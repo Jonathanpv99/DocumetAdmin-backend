@@ -1,5 +1,5 @@
-using Microsoft.EntityFrameworkCore;
 using TramitesAPI.Data;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,12 +32,15 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.MapControllers();
+app.UseCors(); // Agregar el middleware UseCors
 
-app.UseCors();
+app.MapControllers();
 
 app.Run();
